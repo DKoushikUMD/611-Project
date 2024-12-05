@@ -47,3 +47,111 @@ That will output basic information about the issues to the command line.
 To make the application easier to debug, runtime configurations are provided to run each of the analyses you are implementing. When you click on the run button in the left-hand side toolbar, you can select to run one of the three analyses or run the file you are currently viewing. That makes debugging a little easier. This run configuration is specified in the `.vscode/launch.json` if you want to modify it.
 
 The `.vscode/settings.json` also customizes the VSCode user interface sligthly to make navigation and debugging easier. But that is a matter of preference and can be turned off by removing the appropriate settings.
+
+# GitHub Issue Analysis for Poetry Project
+
+An analytical tool for extracting insights from Poetry package manager's GitHub issues, featuring interactive visualizations and detailed metrics.
+
+## Features
+
+**1. User Label Trend Analysis**
+- Tracks how users interact with issue labels over time
+- Interactive line chart with hover functionality
+- Draggable legend for customizable view
+- Command: `python run.py --feature 1 --user <username>`
+
+**2. Label Interaction Metrics**
+- Visualizes top 20 users' engagement with specific labels
+- Interactive bar chart with detailed tooltips
+- Comprehensive interaction statistics
+- Command: `python run.py --feature 2 --label <label_name>`
+
+**3. Label Distribution Analysis**
+- Analyzes label popularity trends across years
+- Interactive stacked bar visualization
+- Percentage-based distribution view
+- Command: `python run.py --feature 3`
+
+## Setup
+
+```bash
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # Unix
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure data file
+# Update config.json with data file path or set ENPM611_PROJECT_DATA_PATH environment variable
+```
+
+## Project Structure
+
+```
+├── data_loader.py            # Data loading utilities
+├── model.py                  # Data models
+├── config.py                 # Configuration handler
+├── user_analysis.py         # User trend analysis
+├── label_analysis.py        # Label interaction analysis
+├── label_interest_analysis.py # Label distribution analysis
+└── run.py                   # Main entry point
+/tests
+    test_label_analysis.py
+    test_label_interest_analysis.py
+    test_user_analysis.py
+```
+
+## Requirements
+
+- Python 3.6+
+- matplotlib
+- pandas
+- plotly
+- numpy
+
+## Development Setup
+
+**VSCode Configuration**
+- Debugging configurations available in `.vscode/launch.json`
+- Customized settings in `.vscode/settings.json`
+- Run configurations for each analysis feature
+
+## Testing
+
+Run the example analysis to verify setup:
+```bash
+python run.py --feature 0
+
+Install these packages using the following command:
+pip install pytest coverage
+
+Execute the following command in the terminal from the project directory:
+pytest
+
+To test a specific file, use:
+pytest test_label_analysis.py
+
+Use coverage to measure code coverage:
+coverage run -m pytest
+
+After running the above command, generate a coverage report in the terminal:
+coverage report -m
+
+For a more detailed view, generate an HTML coverage report:
+coverage html
+
+```
+
+## Output Types
+
+- Feature 1: Time-series line charts with interactive elements
+- Feature 2: Interactive bar charts with user statistics
+- Feature 3: HTML-based stacked bar visualization
+
+## Error Handling
+
+- Validates command-line arguments
+- Provides clear error messages for missing data
+- Handles empty datasets and invalid inputs
